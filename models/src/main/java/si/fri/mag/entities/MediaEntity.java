@@ -9,20 +9,21 @@ import java.sql.Timestamp;
 public class MediaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "media_id")
+    @Column(name = "media_id", nullable = false)
     private Integer mediaId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "site_name")
     private String siteName;
 
-    @Column(name = "length")
+    // length in seconds
+    @Column(name = "length", nullable = false, columnDefinition = "int DEFAULT 0")
     private Integer length;
 
     // 0 --> mediaUploaded, 1 --> mediaSegmented, 3 --> live rdy
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private Integer status;
 
     @Column(name = "thumbnail")
@@ -31,16 +32,16 @@ public class MediaEntity {
     @Column(name = "fk_project_id")
     private String projectId;
 
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date createdAt;
 
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    @Column(name = "updated_at", nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date updatedAt;
 
-    @Column(name = "aws_bucket_whole_media")
+    @Column(name = "aws_bucket_whole_media", nullable = false)
     private String awsBucketWholeMedia;
 
-    @Column(name = "aws_storage_name_whole_media")
+    @Column(name = "aws_storage_name_whole_media", nullable = false)
     private String awsStorageNameWholeMedia;
 
     // Getters
@@ -48,11 +49,11 @@ public class MediaEntity {
         return this.name;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
@@ -110,11 +111,7 @@ public class MediaEntity {
         this.thumbnail = thumbnail;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
