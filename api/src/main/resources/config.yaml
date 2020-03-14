@@ -7,3 +7,9 @@ kumuluzee:
     base-url: http://localhost:8001
     http:
       port: 8001
+  datasources:
+    - jndi-name: jdbc/MediaDB
+      connection-url: jdbc:mysql://mag2020.cd0nfxw2grsa.eu-central-1.rds.amazonaws.com:3306/Media
+      username: admin_uros
+      password: admin_uros123
+      max-pool-size: 20

@@ -1,0 +1,1 @@
+INSERT INTO media (name) VALUES ('first_media');

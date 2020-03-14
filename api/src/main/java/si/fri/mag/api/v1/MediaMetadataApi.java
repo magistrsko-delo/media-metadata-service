@@ -1,5 +1,7 @@
 package si.fri.mag.api.v1;
 
+import si.fri.mag.api.v1.controllers.MediaMetadataController;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -10,7 +12,7 @@ public class MediaMetadataApi extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> resources = new HashSet<Class<?>>();
-
+        resources.add(MediaMetadataController.class);
         return resources;
     }
 }
