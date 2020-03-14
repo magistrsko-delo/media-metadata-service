@@ -2,10 +2,18 @@ package si.fri.mag.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "media")
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "getAllMedias",
+                query = "SELECT * FROM media",
+                resultClass = MediaEntity.class
+        )
+})
+
 public class MediaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
