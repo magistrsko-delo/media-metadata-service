@@ -35,6 +35,7 @@ public class MediaConverter {
         media.setThumbnail(mediaEntity.getThumbnail());
         media.setUpdatedAt(mediaEntity.getUpdatedAt());
         media.setKeywords(mediaKeywords);
+
         return media;
     }
 

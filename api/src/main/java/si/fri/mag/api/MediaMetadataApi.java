@@ -1,6 +1,7 @@
 package si.fri.mag.api;
 
 import si.fri.mag.api.controllers.RootController;
+import si.fri.mag.api.controllers.v1.MediaKeywordsController;
 import si.fri.mag.api.controllers.v1.MediaMetadataController;
 import si.fri.mag.api.mappers.EntityNotFoundMapper;
 import si.fri.mag.api.mappers.ForbiddenExceptionMapper;
@@ -21,6 +22,7 @@ public class MediaMetadataApi extends Application {
         resources.add(NotFoundExceptionMapper.class);
         resources.add(MediaMetadataController.class);
         resources.add(RootController.class);
+        resources.add(MediaKeywordsController.class);
         return resources;
     }
 }
