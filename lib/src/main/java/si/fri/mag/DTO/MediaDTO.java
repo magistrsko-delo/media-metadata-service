@@ -1,6 +1,7 @@
 package si.fri.mag.DTO;
 
 import java.util.Date;
+import java.util.List;
 
 public class MediaDTO {
     private Integer mediaId;
@@ -12,6 +13,7 @@ public class MediaDTO {
     private String projectId;
     private Date createdAt;
     private Date updatedAt;
+    private List<String> keywords;
     private String awsBucketWholeMedia;
     private String awsStorageNameWholeMedia;
 
@@ -61,6 +63,10 @@ public class MediaDTO {
         return status;
     }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
     // setters
 
     public void setUpdatedAt(Date updatedAt) {
@@ -97,6 +103,10 @@ public class MediaDTO {
 
     public void setAwsStorageNameWholeMedia(String awsStorageNameWholeMedia) {
         this.awsStorageNameWholeMedia = awsStorageNameWholeMedia;
+    }
+
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     public void setAwsBucketWholeMedia(String awsBucketWholeMedia) {
