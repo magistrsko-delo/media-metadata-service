@@ -12,6 +12,10 @@ import javax.persistence.*;
                 name = "getMediaKeywords",
                 query = "SELECT * FROM media_keywords WHERE fk_media_id = ?1",
                 resultClass = MediaKeywordEntity.class
+        ),
+        @NamedNativeQuery(
+                name = "deleteMediaKeywords",
+                query = "DELETE FROM media_keywords WHERE media_keywords.fk_media_id = ?1"
         )
 })
 

@@ -61,4 +61,37 @@ public class MediaMetadataController extends MainController {
         return this.responseOk("", mediaDTO);
     }
 
+    @PUT
+    @Path("{mediaId}/update")
+    public Response updateMedia(@PathParam("mediaId") Integer mediaId, String body) {
+        Gson gson = new Gson();
+        MediaInput mediaMetadata;
+        try {
+            mediaMetadata = gson.fromJson(body, MediaInput.class);
+        } catch (Exception e) {
+            return  this.responseError(500, "failed to parse input data");
+        }
+
+        MediaDTO mediaDTO = mediaService.updateMedia(mediaId, mediaMetadata);
+
+        if (mediaDTO == null) {
+            return this.responseError(500, "failed to update given media");
+        }
+
+        return this.responseOk("", mediaDTO);
+    }
+
+    @DELETE
+    @Path("{mediaId}/delete")
+    public Response deleteMedia(@PathParam("mediaId") Integer mediaId) {
+
+        boolean isDeleted = mediaService.deleteMedia(mediaId);
+
+        if (!isDeleted) {
+            responseError(500, "error when deleting media");
+        }
+
+        return this.responseOk("", "ok");
+    }
+
 }

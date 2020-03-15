@@ -18,6 +18,7 @@ public class EntityManagement {
     public MainEntity createNewEntity(MainEntity entity) {
         try {
             entityTransactions.beginTx();
+
             em.persist(entity);
             entityTransactions.commitTx();
         } catch (Exception e) {
@@ -27,6 +28,20 @@ public class EntityManagement {
 
         return  entity;
     }
+
+    public MainEntity updateEntity(MainEntity entity) {
+        try {
+            entityTransactions.beginTx();
+            entity = em.merge(entity);
+            entityTransactions.commitTx();
+        } catch (Exception e) {
+            entityTransactions.rollbackTx();
+            return null;
+        }
+
+        return  entity;
+    }
+
 
     public boolean executeUpdate(Query query) {
         try {

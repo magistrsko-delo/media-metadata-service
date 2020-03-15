@@ -38,13 +38,15 @@ public class MediaConverter {
         return media;
     }
 
-
-
     public MediaEntity toEntityNew(MediaInput mediaInput) {
         MediaEntity mediaEntity = this.toEntity(mediaInput);
         mediaEntity.setCreatedAt(new Date(System.currentTimeMillis()));
 
         return  mediaEntity;
+    }
+
+    public MediaEntity toEntityUpdate(MediaInput mediaInput) {
+        return this.toEntity(mediaInput);
     }
 
     private MediaEntity toEntity(MediaInput mediaInput) {

@@ -13,7 +13,10 @@ import java.sql.Date;
                 name = "getAllMedias",
                 query = "SELECT * FROM media",
                 resultClass = MediaEntity.class
-        )
+        ),
+        @NamedNativeQuery(
+                name = "deleteMedia",
+                query = "DELETE FROM media WHERE media.media_id = ?1"),
 })
 
 public class MediaEntity implements MainEntity {
@@ -136,8 +139,11 @@ public class MediaEntity implements MainEntity {
     public void setAwsStorageNameWholeMedia(String awsStorageNameWholeMedia) {
         this.awsStorageNameWholeMedia = awsStorageNameWholeMedia;
     }
-
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setMediaId(Integer mediaId) {
+        this.mediaId = mediaId;
     }
 }
