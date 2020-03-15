@@ -1,4 +1,4 @@
-package si.fri.mag.util;
+package si.fri.mag.util_entity;
 
 import si.fri.mag.MainEntity;
 

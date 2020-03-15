@@ -1,14 +1,21 @@
 package si.fri.mag.entities;
 
+import si.fri.mag.MainEntity;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "media_keywords")
 
 @NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "getMediaKeywords",
+                query = "SELECT * FROM media_keywords WHERE fk_media_id = ?1",
+                resultClass = MediaKeywordEntity.class
+        )
 })
 
-public class MediaKeywordEntity {
+public class MediaKeywordEntity implements MainEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

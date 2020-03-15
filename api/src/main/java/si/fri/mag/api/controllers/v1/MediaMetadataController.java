@@ -1,15 +1,14 @@
 package si.fri.mag.api.controllers.v1;
 
+import com.google.gson.Gson;
 import si.fri.mag.DTO.MediaDTO;
 import si.fri.mag.api.controllers.MainController;
+import si.fri.mag.input.MediaInput;
 import si.fri.mag.services.MediaService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -29,4 +28,37 @@ public class MediaMetadataController extends MainController {
         List<MediaDTO> mediaDTO = mediaService.getAllMedias();
         return this.responseOk("", mediaDTO);
     }
+
+    @GET
+    @Path("{mediaId}")
+    public Response getOneMedia(@PathParam("mediaId") Integer mediaId) {
+
+        MediaDTO mediaDTO = mediaService.getMedia(mediaId);
+        if (mediaDTO == null) {
+            return this.responseError(400, "Media with id: " + mediaId + " not found");
+        }
+
+        return this.responseOk("", mediaDTO);
+    }
+
+    @POST
+    @Path("new")
+    public Response addMediaMetadata(String body) {
+
+        Gson gson = new Gson();
+        MediaInput mediaMetadata;
+        try {
+            mediaMetadata = gson.fromJson(body, MediaInput.class);
+        } catch (Exception e) {
+            return  this.responseError(500, "failed to parse input data");
+        }
+
+        MediaDTO mediaDTO = mediaService.addNewMedia(mediaMetadata);
+        if (mediaDTO == null) {
+            return this.responseError(500, "failed to create media");
+        }
+
+        return this.responseOk("", mediaDTO);
+    }
+
 }

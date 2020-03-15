@@ -1,4 +1,4 @@
-package si.fri.mag.util;
+package si.fri.mag.util_entity;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

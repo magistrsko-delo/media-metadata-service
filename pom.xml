@@ -24,6 +24,7 @@
         <kumuluzee-rest.version>1.2.3</kumuluzee-rest.version>
         <mysql.version>8.0.17</mysql.version>
         <javax.persistence-api-version>2.2</javax.persistence-api-version>
+        <com.google.code.gson-vesrion>2.8.5</com.google.code.gson-vesrion>
 
     </properties>
     <dependencyManagement>
@@ -49,6 +50,11 @@
                 <groupId>javax.persistence</groupId>
                 <artifactId>javax.persistence-api</artifactId>
                 <version>${javax.persistence-api-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${com.google.code.gson-vesrion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

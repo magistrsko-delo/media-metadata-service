@@ -5,7 +5,7 @@ import si.fri.mag.MediaAbstract;
 import java.util.Date;
 import java.util.List;
 
-public class NewMediaInput extends MediaAbstract {
+public class MediaInput extends MediaAbstract {
     private String keywords;
 
     public String getKeywords() {

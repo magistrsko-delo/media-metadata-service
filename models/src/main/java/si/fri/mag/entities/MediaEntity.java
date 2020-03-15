@@ -1,5 +1,7 @@
 package si.fri.mag.entities;
 
+import si.fri.mag.MainEntity;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -14,7 +16,7 @@ import java.sql.Date;
         )
 })
 
-public class MediaEntity {
+public class MediaEntity implements MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "media_id", nullable = false)
@@ -46,10 +48,10 @@ public class MediaEntity {
     @Column(name = "updated_at", nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    @Column(name = "aws_bucket_whole_media", nullable = false)
+    @Column(name = "aws_bucket_whole_media")
     private String awsBucketWholeMedia;
 
-    @Column(name = "aws_storage_name_whole_media", nullable = false)
+    @Column(name = "aws_storage_name_whole_media")
     private String awsStorageNameWholeMedia;
 
     // Getters
@@ -135,4 +137,7 @@ public class MediaEntity {
         this.awsStorageNameWholeMedia = awsStorageNameWholeMedia;
     }
 
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }
