@@ -19,7 +19,7 @@ branches:
 
 env:
   global:
-    - DOCKER_IMAGE=mag20/mag20/media-metadata
+    - DOCKER_IMAGE=mag20/media-metadata
     - DOCKER_TAG=$TRAVIS_JOB_NUMBER
 
 jobs:
@@ -34,3 +34,4 @@ jobs:
         - docker push "$DOCKER_IMAGE":latest
         - docker push "$DOCKER_IMAGE":"$DOCKER_TAG"
         - echo "$DOCKER_IMAGE":"$DOCKER_TAG"
+        - echo "$DOCKER_IMAGE":latest
