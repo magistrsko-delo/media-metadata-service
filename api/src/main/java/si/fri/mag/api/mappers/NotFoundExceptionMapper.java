@@ -13,6 +13,6 @@ public class NotFoundExceptionMapper extends MainController implements Exception
 
     @Override
     public Response toResponse(NotFoundException e) {
-        return Response.status(404).entity(new ResponseErrorDTO(404, e.getMessage())).build();
+        return this.responseError(404, e.getMessage());
     }
 }
