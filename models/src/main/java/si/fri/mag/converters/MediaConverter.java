@@ -47,7 +47,9 @@ public class MediaConverter {
     }
 
     public MediaEntity toEntityUpdate(MediaInput mediaInput) {
-        return this.toEntity(mediaInput);
+        MediaEntity mediaEntity = this.toEntity(mediaInput);
+        mediaEntity.setCreatedAt(new Date(mediaInput.getCreatedAt() * 1000));
+        return mediaEntity;
     }
 
     private MediaEntity toEntity(MediaInput mediaInput) {

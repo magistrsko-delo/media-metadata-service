@@ -13,7 +13,6 @@ public abstract class MediaAbstract {
     protected Integer projectId;
     protected String awsBucketWholeMedia;
     protected String awsStorageNameWholeMedia;
-
     // getters
 
     public String getThumbnail() {
@@ -82,7 +81,6 @@ public abstract class MediaAbstract {
     public void setAwsStorageNameWholeMedia(String awsStorageNameWholeMedia) {
         this.awsStorageNameWholeMedia = awsStorageNameWholeMedia;
     }
-
 
     public void setAwsBucketWholeMedia(String awsBucketWholeMedia) {
         this.awsBucketWholeMedia = awsBucketWholeMedia;
