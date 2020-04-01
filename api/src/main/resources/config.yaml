@@ -13,3 +13,8 @@ kumuluzee:
       username: admin_uros
       password: admin_uros123
       max-pool-size: 20
+  grpc:
+    server:
+      url: localhost
+      http:
+        port: 9002

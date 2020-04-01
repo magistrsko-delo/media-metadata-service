@@ -26,6 +26,8 @@
         <javax.persistence-api-version>2.2</javax.persistence-api-version>
         <com.google.code.gson-vesrion>2.8.5</com.google.code.gson-vesrion>
 
+        <kumuluzee.grpc.version>1.1.0</kumuluzee.grpc.version>
+        <grpc.version>1.14.0</grpc.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -76,20 +78,12 @@
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-jax-rs-jersey</artifactId>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>com.kumuluz.ee.grpc</groupId>
+            <artifactId>kumuluzee-grpc</artifactId>
+            <version>${kumuluzee.grpc.version}</version>
+        </dependency>
 
-    <repositories>
-        <repository>
-            <id>sonatype-snapshots</id>
-            <name>Sonatype Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+    </dependencies>
 
 </project>

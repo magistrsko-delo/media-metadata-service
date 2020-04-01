@@ -10,7 +10,7 @@ public abstract class MediaAbstract {
     protected Integer length;
     protected Integer status;
     protected String thumbnail;
-    protected String projectId;
+    protected Integer projectId;
     protected String awsBucketWholeMedia;
     protected String awsStorageNameWholeMedia;
 
@@ -24,7 +24,7 @@ public abstract class MediaAbstract {
         return siteName;
     }
 
-    public String getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
@@ -55,7 +55,6 @@ public abstract class MediaAbstract {
     // setters
 
 
-
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
@@ -68,7 +67,7 @@ public abstract class MediaAbstract {
         this.siteName = siteName;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 

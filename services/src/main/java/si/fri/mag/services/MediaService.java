@@ -7,7 +7,7 @@ import si.fri.mag.input.MediaInput;
 import si.fri.mag.util_entity.EntityManagement;
 import si.fri.mag.util_entity.EntityTransactions;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -15,7 +15,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestScoped
+@ApplicationScoped
 public class MediaService {
     @Inject
     private EntityManager em;
@@ -51,7 +51,6 @@ public class MediaService {
     }
 
     public MediaDTO addNewMedia(MediaInput mediaInput) {
-
         MediaEntity mediaEntity = mediaConverter.toEntityNew(mediaInput);
         mediaEntity = (MediaEntity) entityManagement.createNewEntity(mediaEntity);
 

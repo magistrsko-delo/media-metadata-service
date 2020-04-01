@@ -56,12 +56,11 @@ public class MediaConverter {
         mediaEntity.setSiteName(mediaInput.getSiteName());
         mediaEntity.setLength(mediaInput.getLength());
         mediaEntity.setStatus(mediaInput.getStatus());
-        mediaInput.setThumbnail(mediaInput.getThumbnail());
-        mediaInput.setProjectId(mediaInput.getProjectId());
+        mediaEntity.setThumbnail(mediaInput.getThumbnail());
+        mediaEntity.setProjectId(mediaInput.getProjectId());
         mediaEntity.setAwsStorageNameWholeMedia(mediaInput.getAwsStorageNameWholeMedia());
         mediaEntity.setAwsBucketWholeMedia(mediaInput.getAwsBucketWholeMedia());
         mediaEntity.setUpdatedAt(new Date(System.currentTimeMillis()));
-
         return mediaEntity;
     }
 

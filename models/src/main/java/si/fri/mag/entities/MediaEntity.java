@@ -43,7 +43,7 @@ public class MediaEntity implements MainEntity {
     private String thumbnail;
 
     @Column(name = "fk_project_id")
-    private String projectId;
+    private Integer projectId;
 
     @Column(name = "created_at", nullable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
@@ -90,7 +90,7 @@ public class MediaEntity implements MainEntity {
         return awsStorageNameWholeMedia;
     }
 
-    public String getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
@@ -116,7 +116,7 @@ public class MediaEntity implements MainEntity {
         this.length = length;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 
