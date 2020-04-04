@@ -52,6 +52,15 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void getMediaMetadata(MediametadataService.GetMediaMetadataRequest request, StreamObserver<MediametadataService.MediaMetadataResponse> responseObserver) {
+        mediaService = CDI.current().select(MediaService.class).get();
+        MediaDTO mediaDTO = mediaService.getMedia(request.getMediaId());
+
+        responseObserver.onNext(this.buildMediaMetadataResponse(mediaDTO));
+        responseObserver.onCompleted();
+    }
+
     private MediametadataService.MediaMetadataResponse buildMediaMetadataResponse(MediaDTO mediaDTO) {
         return MediametadataService.MediaMetadataResponse.newBuilder()
                 .setMediaId(mediaDTO.getMediaId())
