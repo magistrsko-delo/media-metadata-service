@@ -5,12 +5,16 @@ import io.grpc.stub.StreamObserver;
 import si.fri.mag.DTO.MediaDTO;
 import si.fri.mag.input.MediaInput;
 import si.fri.mag.services.MediaService;
+import si.fri.mag.services.ProjectMediaService;
 
 import javax.enterprise.inject.spi.CDI;
+import java.util.ArrayList;
+import java.util.List;
 
 @GrpcService
 public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImplBase {
     MediaService mediaService;
+    ProjectMediaService projectMediaService;
     @Override
     public void newMediaMetadata(MediametadataService.CreateNewMediaMetadataRequest request, StreamObserver<MediametadataService.MediaMetadataResponse> responseObserver) {
         MediaInput mediaInput = new MediaInput();
@@ -59,6 +63,40 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
 
         responseObserver.onNext(this.buildMediaMetadataResponse(mediaDTO));
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getProjectMediasMetadata(MediametadataService.GetProjectMediasRequest request, StreamObserver<MediametadataService.MediaMetadataResponseRepeated> responseObserver) {
+        projectMediaService = CDI.current().select(ProjectMediaService.class).get();
+        List<MediaDTO> mediaDTOS = projectMediaService.getProjectMedias(request.getProjectId());
+
+        MediametadataService.MediaMetadataResponseRepeated response = MediametadataService.MediaMetadataResponseRepeated
+                .newBuilder()
+                .addAllData(this.buildMediaMetadataResponseRepeated(mediaDTOS))
+                .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getOneProjectMediasMetadata(MediametadataService.GetOneProjectMedia request, StreamObserver<MediametadataService.MediaMetadataResponse> responseObserver) {
+        projectMediaService = CDI.current().select(ProjectMediaService.class).get();
+        MediaDTO mediaDTO = projectMediaService.getProjectOneMedia(request.getMediaId(), request.getProjectId());
+
+        responseObserver.onNext(this.buildMediaMetadataResponse(mediaDTO));
+        responseObserver.onCompleted();
+    }
+
+    private List<MediametadataService.MediaMetadataResponse> buildMediaMetadataResponseRepeated(List<MediaDTO> mediaDTOS) {
+
+        List<MediametadataService.MediaMetadataResponse> mediaMetadataResponses = new ArrayList<>();
+
+        for (MediaDTO mediaDTO : mediaDTOS) {
+            mediaMetadataResponses.add(this.buildMediaMetadataResponse(mediaDTO));
+        }
+
+        return mediaMetadataResponses;
     }
 
     private MediametadataService.MediaMetadataResponse buildMediaMetadataResponse(MediaDTO mediaDTO) {

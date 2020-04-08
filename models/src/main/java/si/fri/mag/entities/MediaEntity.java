@@ -15,6 +15,16 @@ import java.sql.Date;
                 resultClass = MediaEntity.class
         ),
         @NamedNativeQuery(
+                name = "getProjectMedias",
+                query = "SELECT * FROM media where media.fk_project_id = ?1",
+                resultClass = MediaEntity.class
+        ),
+        @NamedNativeQuery(
+                name = "getProjectOneMedia",
+                query = "SELECT * FROM media where media.fk_project_id = ?1 and media.media_id = ?2",
+                resultClass = MediaEntity.class
+        ),
+        @NamedNativeQuery(
                 name = "deleteMedia",
                 query = "DELETE FROM media WHERE media.media_id = ?1"),
 })

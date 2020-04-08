@@ -4,6 +4,9 @@ INSERT INTO media (name, site_name, length, status, thumbnail, aws_bucket_whole_
 
 INSERT INTO media (name, site_name, length, status, thumbnail, aws_bucket_whole_media, aws_storage_name_whole_media) VALUES ('24ur inspešpektor', "24ur", 30, 0, "http://localhost:8000", "media_thumbnail_ispektor", "24ur_inspektor_123");
 
+INSERT INTO media (name, site_name, length, status, thumbnail, aws_bucket_whole_media, aws_storage_name_whole_media, fk_project_id) VALUES ('project media', "project", 3, 1, "http://localhost:8000", "test_bucket", "test_storage", 1);
+INSERT INTO media (name, site_name, length, status, thumbnail, aws_bucket_whole_media, aws_storage_name_whole_media, fk_project_id) VALUES ('project media1', "project", 5, 1, "http://localhost:9000", "test_bucket1", "test_storage1", 1);
+
 INSERT INTO media_keywords (keyword, fk_media_id) VALUES ("24ur", 1)
 INSERT INTO media_keywords (keyword, fk_media_id) VALUES ("novice", 1)
 INSERT INTO media_keywords (keyword, fk_media_id) VALUES ("virus", 1)
