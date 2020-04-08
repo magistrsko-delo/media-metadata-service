@@ -1,10 +1,12 @@
 syntax = "proto3";
 option java_package = "grpc";
+import "google/protobuf/empty.proto";
 
 service MediaMetadata {
   rpc newMediaMetadata(CreateNewMediaMetadataRequest) returns (MediaMetadataResponse) {};
   rpc updateMediaMetadata(UpdateMediaRequest) returns(MediaMetadataResponse) {};
   rpc getMediaMetadata(GetMediaMetadataRequest) returns(MediaMetadataResponse) {};
+  rpc getAllMediaMetadata(google.protobuf.Empty) returns(MediaMetadataResponseRepeated) {};
   rpc getProjectMediasMetadata(GetProjectMediasRequest) returns(MediaMetadataResponseRepeated) {};
   rpc getOneProjectMediasMetadata(GetOneProjectMedia) returns(MediaMetadataResponse) {};
 }

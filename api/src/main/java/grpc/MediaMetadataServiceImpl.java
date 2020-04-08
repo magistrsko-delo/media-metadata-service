@@ -1,5 +1,6 @@
 package grpc;
 
+import com.google.protobuf.Empty;
 import com.kumuluz.ee.grpc.annotations.GrpcService;
 import io.grpc.stub.StreamObserver;
 import si.fri.mag.DTO.MediaDTO;
@@ -62,6 +63,20 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
         MediaDTO mediaDTO = mediaService.getMedia(request.getMediaId());
 
         responseObserver.onNext(this.buildMediaMetadataResponse(mediaDTO));
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getAllMediaMetadata(Empty request, StreamObserver<MediametadataService.MediaMetadataResponseRepeated> responseObserver) {
+        mediaService = CDI.current().select(MediaService.class).get();
+        List<MediaDTO> mediaDTOS = mediaService.getAllMedias();
+
+        MediametadataService.MediaMetadataResponseRepeated response = MediametadataService.MediaMetadataResponseRepeated
+                .newBuilder()
+                .addAllData(this.buildMediaMetadataResponseRepeated(mediaDTOS))
+                .build();
+
+        responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
 
