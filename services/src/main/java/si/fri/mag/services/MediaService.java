@@ -29,16 +29,34 @@ public class MediaService {
     @Inject
     EntityTransactions entityTransactions;
 
-    public List<MediaDTO> getAllMedias() {
-        Query q = em.createNamedQuery("getAllMedias");
-        List<MediaEntity> mediaEntities = (List<MediaEntity>)q.getResultList();
-
+    private List<MediaDTO> prepareMediaDTOResponse(List<MediaEntity> mediaEntities) {
         List<MediaDTO> mediaDTOS = new ArrayList<MediaDTO>();
         for (MediaEntity mediaEntity : mediaEntities) {
             mediaDTOS.add(mediaConverter.toDTO(mediaEntity));
         }
 
         return mediaDTOS;
+    }
+
+    public List<MediaDTO> getAllMedias() {
+        Query q = em.createNamedQuery("getAllMedias");
+        List<MediaEntity> mediaEntities = (List<MediaEntity>)q.getResultList();
+
+        return this.prepareMediaDTOResponse(mediaEntities);
+    }
+
+    public List<MediaDTO> getLiveMedias() {
+        Query q = em.createNamedQuery("getLiveMedias");
+        List<MediaEntity> mediaEntities = (List<MediaEntity>)q.getResultList();
+
+        return this.prepareMediaDTOResponse(mediaEntities);
+    }
+
+    public List<MediaDTO> getMediasInProgress() {
+        Query q = em.createNamedQuery("getMediasInProgress");
+        List<MediaEntity> mediaEntities = (List<MediaEntity>)q.getResultList();
+
+        return this.prepareMediaDTOResponse(mediaEntities);
     }
 
     public MediaDTO getMedia(Integer mediaId) {

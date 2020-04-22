@@ -9,6 +9,9 @@ service MediaMetadata {
   rpc getAllMediaMetadata(google.protobuf.Empty) returns(MediaMetadataResponseRepeated) {};
   rpc getProjectMediasMetadata(GetProjectMediasRequest) returns(MediaMetadataResponseRepeated) {};
   rpc getOneProjectMediasMetadata(GetOneProjectMedia) returns(MediaMetadataResponse) {};
+
+  rpc getLiveMedias(google.protobuf.Empty) returns(MediaMetadataResponseRepeated){}
+  rpc getMediasInProgress(google.protobuf.Empty) returns(MediaMetadataResponseRepeated){}
 }
 
 message CreateNewMediaMetadataRequest {

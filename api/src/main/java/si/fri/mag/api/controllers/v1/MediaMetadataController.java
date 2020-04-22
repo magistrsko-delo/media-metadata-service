@@ -24,8 +24,21 @@ public class MediaMetadataController extends MainController {
 
     @GET
     @Path("all")
-    public Response getAllMediaMetadata() {
-        List<MediaDTO> mediaDTO = mediaService.getAllMedias();
+    public Response getAllMediaMetadata(@QueryParam("status") Integer status) {
+
+        List<MediaDTO> mediaDTO = null;
+
+        if (status != null && (status >= 0 && status <= 3)) {
+            if (status == 3) {
+                mediaDTO = mediaService.getLiveMedias();
+            } else {
+                mediaDTO = mediaService.getMediasInProgress();
+            }
+
+        } else {
+            mediaDTO = mediaService.getAllMedias();
+        }
+
         return this.responseOk("", mediaDTO);
     }
 

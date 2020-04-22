@@ -81,6 +81,33 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
     }
 
     @Override
+    public void getLiveMedias(Empty request, StreamObserver<MediametadataService.MediaMetadataResponseRepeated> responseObserver) {
+        mediaService = CDI.current().select(MediaService.class).get();
+        List<MediaDTO> mediaDTOS = mediaService.getLiveMedias();
+        MediametadataService.MediaMetadataResponseRepeated response = MediametadataService.MediaMetadataResponseRepeated
+                .newBuilder()
+                .addAllData(this.buildMediaMetadataResponseRepeated(mediaDTOS))
+                .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getMediasInProgress(Empty request, StreamObserver<MediametadataService.MediaMetadataResponseRepeated> responseObserver) {
+        mediaService = CDI.current().select(MediaService.class).get();
+        List<MediaDTO> mediaDTOS = mediaService.getMediasInProgress();
+
+        MediametadataService.MediaMetadataResponseRepeated response = MediametadataService.MediaMetadataResponseRepeated
+                .newBuilder()
+                .addAllData(this.buildMediaMetadataResponseRepeated(mediaDTOS))
+                .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
     public void getProjectMediasMetadata(MediametadataService.GetProjectMediasRequest request, StreamObserver<MediametadataService.MediaMetadataResponseRepeated> responseObserver) {
         projectMediaService = CDI.current().select(ProjectMediaService.class).get();
         List<MediaDTO> mediaDTOS = projectMediaService.getProjectMedias(request.getProjectId());

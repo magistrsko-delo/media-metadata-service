@@ -14,6 +14,19 @@ import java.sql.Date;
                 query = "SELECT * FROM media",
                 resultClass = MediaEntity.class
         ),
+
+        @NamedNativeQuery(
+                name = "getLiveMedias",
+                query = "SELECT * FROM media where media.fk_project_id < 0 and media.status = 3",
+                resultClass = MediaEntity.class
+        ),
+
+        @NamedNativeQuery(
+                name = "getMediasInProgress",
+                query = "SELECT * FROM media where media.fk_project_id < 0 and media.status < 3",
+                resultClass = MediaEntity.class
+        ),
+
         @NamedNativeQuery(
                 name = "getProjectMedias",
                 query = "SELECT * FROM media where media.fk_project_id = ?1",
