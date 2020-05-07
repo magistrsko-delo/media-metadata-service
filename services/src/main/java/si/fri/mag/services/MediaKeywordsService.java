@@ -34,7 +34,7 @@ public class MediaKeywordsService {
             throw new EntityNotFoundException("Entity not found with id: " + mediaId + "\n Keywords can not be updated.");
         }
 
-        Query queryKeywordsDelete = em.createNamedQuery("deleteMediaKeywords").setParameter(1, mediaId);
+        /*Query queryKeywordsDelete = em.createNamedQuery("deleteMediaKeywords").setParameter(1, mediaId);
         boolean isDeleted = entityManagement.executeUpdate(queryKeywordsDelete);
         if (!isDeleted) {
             return null;
@@ -46,7 +46,7 @@ public class MediaKeywordsService {
             if (mediaKeywordEntity == null) {
                 return null;
             }
-        }
+        }*/
         return mediaConverter.toDTO(mediaEntity);
     }
 }

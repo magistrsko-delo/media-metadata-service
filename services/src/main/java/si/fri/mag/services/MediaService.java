@@ -100,12 +100,12 @@ public class MediaService {
 
     public boolean deleteMedia(Integer mediaId) {
 
-        Query queryKeywordsDelete = em.createNamedQuery("deleteMediaKeywords").setParameter(1, mediaId);
+        // Query queryKeywordsDelete = em.createNamedQuery("deleteMediaKeywords").setParameter(1, mediaId);
         Query queryMediaDelete = em.createNamedQuery("deleteMedia").setParameter(1, mediaId);
 
         try {
             entityTransactions.beginTx();
-            queryKeywordsDelete.executeUpdate();
+            // queryKeywordsDelete.executeUpdate();
             queryMediaDelete.executeUpdate();
             entityTransactions.commitTx();
         } catch (Exception e) {
