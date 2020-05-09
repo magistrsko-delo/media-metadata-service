@@ -133,14 +133,14 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
     }
 
     @Override
-    public void deleteMedia(MediametadataService.GetMediaMetadataRequest request, StreamObserver<MediametadataService.StatusResponse> responseObserver) {
+    public void deleteMedia(MediametadataService.GetMediaMetadataRequest request, StreamObserver<MediametadataService.StatusResponse1> responseObserver) {
         mediaService = CDI.current().select(MediaService.class).get();
         boolean isDeleted = mediaService.deleteMedia(request.getMediaId());
         if (!isDeleted) {
             responseObserver.onError(new Error("media not deletet: " + isDeleted));
             responseObserver.onCompleted();
         }
-        MediametadataService.StatusResponse statusResponse = MediametadataService.StatusResponse.newBuilder()
+        MediametadataService.StatusResponse1 statusResponse = MediametadataService.StatusResponse1.newBuilder()
                 .setMessage("Media deleted")
                 .setStatus(200)
                 .setData(isDeleted)
