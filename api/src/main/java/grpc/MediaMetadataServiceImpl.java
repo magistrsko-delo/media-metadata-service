@@ -2,6 +2,7 @@ package grpc;
 
 import com.google.protobuf.Empty;
 import com.kumuluz.ee.grpc.annotations.GrpcService;
+import com.sun.org.apache.bcel.internal.generic.ATHROW;
 import io.grpc.stub.StreamObserver;
 import si.fri.mag.DTO.MediaDTO;
 import si.fri.mag.input.MediaInput;
@@ -84,6 +85,7 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
     public void getLiveMedias(Empty request, StreamObserver<MediametadataService.MediaMetadataResponseRepeated> responseObserver) {
         mediaService = CDI.current().select(MediaService.class).get();
         List<MediaDTO> mediaDTOS = mediaService.getLiveMedias();
+
         MediametadataService.MediaMetadataResponseRepeated response = MediametadataService.MediaMetadataResponseRepeated
                 .newBuilder()
                 .addAllData(this.buildMediaMetadataResponseRepeated(mediaDTOS))
@@ -127,6 +129,23 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
         MediaDTO mediaDTO = projectMediaService.getProjectOneMedia(request.getMediaId(), request.getProjectId());
 
         responseObserver.onNext(this.buildMediaMetadataResponse(mediaDTO));
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void deleteMedia(MediametadataService.GetMediaMetadataRequest request, StreamObserver<MediametadataService.StatusResponse> responseObserver) {
+        mediaService = CDI.current().select(MediaService.class).get();
+        boolean isDeleted = mediaService.deleteMedia(request.getMediaId());
+        if (!isDeleted) {
+            responseObserver.onError(new Error("media not deletet: " + isDeleted));
+            responseObserver.onCompleted();
+        }
+        MediametadataService.StatusResponse statusResponse = MediametadataService.StatusResponse.newBuilder()
+                .setMessage("Media deleted")
+                .setStatus(200)
+                .setData(isDeleted)
+                .build();
+        responseObserver.onNext(statusResponse);
         responseObserver.onCompleted();
     }
 

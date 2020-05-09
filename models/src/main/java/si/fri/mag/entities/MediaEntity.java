@@ -11,25 +11,25 @@ import java.sql.Date;
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "getAllMedias",
-                query = "SELECT * FROM media",
+                query = "SELECT * FROM media order by media_id desc",
                 resultClass = MediaEntity.class
         ),
 
         @NamedNativeQuery(
                 name = "getLiveMedias",
-                query = "SELECT * FROM media where media.fk_project_id < 0 and media.status = 3",
+                query = "SELECT * FROM media where media.fk_project_id < 0 and media.status = 3 order by media_id desc",
                 resultClass = MediaEntity.class
         ),
 
         @NamedNativeQuery(
                 name = "getMediasInProgress",
-                query = "SELECT * FROM media where media.fk_project_id < 0 and media.status < 3",
+                query = "SELECT * FROM media where media.fk_project_id < 0 and media.status < 3 order by media_id desc",
                 resultClass = MediaEntity.class
         ),
 
         @NamedNativeQuery(
                 name = "getProjectMedias",
-                query = "SELECT * FROM media where media.fk_project_id = ?1",
+                query = "SELECT * FROM media where media.fk_project_id = ?1 order by media_id desc",
                 resultClass = MediaEntity.class
         ),
         @NamedNativeQuery(

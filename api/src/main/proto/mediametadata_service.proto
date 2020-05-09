@@ -12,6 +12,8 @@ service MediaMetadata {
 
   rpc getLiveMedias(google.protobuf.Empty) returns(MediaMetadataResponseRepeated){}
   rpc getMediasInProgress(google.protobuf.Empty) returns(MediaMetadataResponseRepeated){}
+
+  rpc deleteMedia(GetMediaMetadataRequest) returns(StatusResponse);
 }
 
 message CreateNewMediaMetadataRequest {
@@ -69,4 +71,10 @@ message GetProjectMediasRequest {
 message GetOneProjectMedia {
   int32 mediaId = 1;
   int32 projectId = 2;
+}
+
+message StatusResponse {
+  string message = 1;
+  int32 status = 2;
+  bool data = 3;
 }
