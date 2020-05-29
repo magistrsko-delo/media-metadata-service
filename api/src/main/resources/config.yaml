@@ -31,7 +31,6 @@ kumuluzee:
       sampler:
         type: const # default sampler type
         param: 1 # default sampler param
-        manager-host-port: http://jaeger-agent.istio-system:5775
       propagation: jaeger
       traceid-128bit: true
   grpc:
