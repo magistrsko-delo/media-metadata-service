@@ -1,5 +1,6 @@
 package si.fri.mag.entities;
 
+import org.eclipse.microprofile.opentracing.Traced;
 import si.fri.mag.MainEntity;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import javax.persistence.*;
         )
 })
 
+@Traced(value = true, operationName = "mediaKeywordEntityTracing")
 public class MediaKeywordEntity implements MainEntity {
 
     @Id

@@ -21,18 +21,6 @@ kumuluzee:
   opentracing:
     jaeger:
       service-name: mag2020-media-metadata # if not set kumuluzee.name value is used
-      agent-host: jaeger-agent.istio-system  # default agent host
-      agent-port: 5775 # default agent port
-      endpoint: /api/traces
-      reporter:
-        log-spans: true
-        max-queue-size: 10000
-        flush-interval: 1000
-      sampler:
-        type: const # default sampler type
-        param: 1 # default sampler param
-      propagation: jaeger
-      traceid-128bit: true
   grpc:
     server:
       url: localhost

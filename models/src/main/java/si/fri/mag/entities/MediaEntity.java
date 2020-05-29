@@ -1,5 +1,6 @@
 package si.fri.mag.entities;
 
+import org.eclipse.microprofile.opentracing.Traced;
 import si.fri.mag.MainEntity;
 
 import javax.persistence.*;
@@ -42,6 +43,7 @@ import java.sql.Date;
                 query = "DELETE FROM media WHERE media.media_id = ?1"),
 })
 
+@Traced(value = true, operationName = "mediaEntityTracing")
 public class MediaEntity implements MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
