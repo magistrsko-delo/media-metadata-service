@@ -25,6 +25,7 @@ public class MediaMetadataApi extends Application {
         resources.add(RootController.class);
         resources.add(MediaKeywordsController.class);
         resources.add(MediaProjectMetadataController.class);
+        // Client httpClient = ClientTracingRegistrar.configure(ClientBuilder.newBuilder()).build();
         return resources;
     }
 }
