@@ -7,6 +7,7 @@ import si.fri.mag.entities.MediaEntity;
 import si.fri.mag.entities.MediaKeywordEntity;
 import si.fri.mag.util_entity.EntityManagement;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 import java.util.List;
 
-@RequestScoped
+@ApplicationScoped
 public class MediaKeywordsService {
     @Inject
     private EntityManager em;
@@ -34,7 +35,7 @@ public class MediaKeywordsService {
             throw new EntityNotFoundException("Entity not found with id: " + mediaId + "\n Keywords can not be updated.");
         }
 
-        /*Query queryKeywordsDelete = em.createNamedQuery("deleteMediaKeywords").setParameter(1, mediaId);
+        Query queryKeywordsDelete = em.createNamedQuery("deleteMediaKeywords").setParameter(1, mediaId);
         boolean isDeleted = entityManagement.executeUpdate(queryKeywordsDelete);
         if (!isDeleted) {
             return null;
@@ -46,7 +47,7 @@ public class MediaKeywordsService {
             if (mediaKeywordEntity == null) {
                 return null;
             }
-        }*/
+        }
         return mediaConverter.toDTO(mediaEntity);
     }
 }

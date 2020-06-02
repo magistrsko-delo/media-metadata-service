@@ -6,6 +6,7 @@ import com.sun.org.apache.bcel.internal.generic.ATHROW;
 import io.grpc.stub.StreamObserver;
 import si.fri.mag.DTO.MediaDTO;
 import si.fri.mag.input.MediaInput;
+import si.fri.mag.services.MediaKeywordsService;
 import si.fri.mag.services.MediaService;
 import si.fri.mag.services.ProjectMediaService;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImplBase {
     MediaService mediaService;
     ProjectMediaService projectMediaService;
+    MediaKeywordsService mediaKeywordsService;
     @Override
     public void newMediaMetadata(MediametadataService.CreateNewMediaMetadataRequest request, StreamObserver<MediametadataService.MediaMetadataResponse> responseObserver) {
         MediaInput mediaInput = new MediaInput();
@@ -146,6 +148,21 @@ public class MediaMetadataServiceImpl extends MediaMetadataGrpc.MediaMetadataImp
                 .setData(isDeleted)
                 .build();
         responseObserver.onNext(statusResponse);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void updateMediaKeywords(MediametadataService.UpdateMediaKeywords request, StreamObserver<MediametadataService.MediaMetadataResponse> responseObserver) {
+        mediaKeywordsService = CDI.current().select(MediaKeywordsService.class).get();
+        MediaDTO mediaDTO = mediaKeywordsService.updateKeyWords(request.getMediaId(), request.getKeywordsList());
+
+        if (mediaDTO == null) {
+            responseObserver.onError(new Throwable("error when updating media keywords"));
+            responseObserver.onCompleted();
+            return;
+        }
+
+        responseObserver.onNext(this.buildMediaMetadataResponse(mediaDTO));
         responseObserver.onCompleted();
     }
 
