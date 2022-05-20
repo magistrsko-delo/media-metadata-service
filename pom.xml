@@ -27,7 +27,7 @@
         <kumuluzee-config-mp.version>1.4.0</kumuluzee-config-mp.version>
         <mysql.version>8.0.17</mysql.version>
         <javax.persistence-api-version>2.2</javax.persistence-api-version>
-        <com.google.code.gson-vesrion>2.8.5</com.google.code.gson-vesrion>
+        <com.google.code.gson-vesrion>2.8.9</com.google.code.gson-vesrion>
 
         <kumuluzee.grpc.version>1.1.0</kumuluzee.grpc.version>
         <grpc.version>1.14.0</grpc.version>
